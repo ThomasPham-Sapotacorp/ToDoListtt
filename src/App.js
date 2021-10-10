@@ -1,25 +1,52 @@
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import React 	from 'react';
+import {connect} 	from 'react-redux';
+
+import Title 	from './components/title';
+import Form 	from './components/form';
+import List 	from './components/list';
+
+import Search 	from './components/search.js';
+import Sort 	from './components/sort.js';
+import ToggleForm 	from './components/toggleForm.js';
+
+class App extends React.Component {
+
+	render(){	
+
+		return (
+			
+			<div className="container">
+
+				<React.StrictMode>
+					<Title/>
+
+					<div className="row">
+				
+						<Search />
+						
+						<Sort />
+						
+						<ToggleForm />
+
+					</div>
+
+					<Form />
+
+					<List />
+     	 		</React.StrictMode>
+
+			</div>
+		);
+	}
+	
 }
 
-export default App;
+const mapStateToProps = state => {
+	return {
+		isShowForm: state.isShowForm
+	}
+}
+
+export default connect(mapStateToProps, null)(App);
+
